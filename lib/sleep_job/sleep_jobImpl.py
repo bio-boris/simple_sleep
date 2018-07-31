@@ -52,7 +52,7 @@ class sleep_job:
 
         print("About to sleep for " + str(input_sleep) + " seconds")
         time.sleep(input_sleep)
-        output = 1
+        output = {'new_number': 1}
 
         #END simple_sleep
 
