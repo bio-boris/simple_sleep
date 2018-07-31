@@ -1,0 +1,67 @@
+# -*- coding: utf-8 -*-
+#BEGIN_HEADER
+#END_HEADER
+
+
+class sleep_job:
+    '''
+    Module Name:
+    sleep_job
+
+    Module Description:
+    A KBase module: sleep_job
+    '''
+
+    ######## WARNING FOR GEVENT USERS ####### noqa
+    # Since asynchronous IO can lead to methods - even the same method -
+    # interrupting each other, you must be *very* careful when using global
+    # state. A method could easily clobber the state set by another while
+    # the latter method is running.
+    ######################################### noqa
+    VERSION = "0.0.1"
+    GIT_URL = ""
+    GIT_COMMIT_HASH = ""
+
+    #BEGIN_CLASS_HEADER
+    #END_CLASS_HEADER
+
+    # config contains contents of config file in a hash or None if it couldn't
+    # be found
+    def __init__(self, config):
+        #BEGIN_CONSTRUCTOR
+        #END_CONSTRUCTOR
+        pass
+
+
+    def simple_sleep(self, ctx, input):
+        """
+        :param input: instance of Long
+        :returns: instance of Long
+        """
+        # ctx is the context object
+        # return variables are: output
+        #BEGIN simple_sleep
+
+        import time
+        if input < 30:
+            input = 30
+        time.sleep(input)
+        output = 1
+
+        #END simple_sleep
+
+        # At some point might do deeper type checking...
+        if not isinstance(output, int):
+            raise ValueError('Method simple_sleep return value ' +
+                             'output is not type int as required.')
+        # return the results
+        return [output]
+    def status(self, ctx):
+        #BEGIN_STATUS
+        returnVal = {'state': "OK",
+                     'message': "",
+                     'version': self.VERSION,
+                     'git_url': self.GIT_URL,
+                     'git_commit_hash': self.GIT_COMMIT_HASH}
+        #END_STATUS
+        return [returnVal]
